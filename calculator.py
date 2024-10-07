@@ -1,42 +1,53 @@
 from cs50 import get_string
 from cs50 import get_int
-from cs50 import get_float
 
-sayac = get_int("Hesap Makinesini Çalıştırmak İçin \nBaşlat = 1\nKapat = 2\nİşlemi Seçiniz : ")
+def sayac():
+    return get_int("Hesap Makinesini Çalıştırmak İçin \nBaşlat = 1\nKapat = 2\nİşlemi Seçiniz : ")
 
-def toplama(a,b):
-    return  a+b
+def toplama(a, b):
+    return a + b
 
-def cikarma(a,b):
-    return a-b
+def cikarma(a, b):
+    return a - b
 
-def bölme(a,b):
-    return a/b
+def bolme(a, b):
+    if b == 0:
+        return "Hata: Sıfıra bölme"
+    return a / b
 
-def carpma(a,b):
-    return a*b
-while  sayac == 1:
-    print("Merhaba Hesap Makinesine Hoşgeldiniz.")
+def carpma(a, b):
+    return a * b
 
-    x = get_int("1. Sayı Giriniz : ")
+while True:
+    karar = sayac()
+    if karar == 1:
+        print("Merhaba Hesap Makinesine Hoşgeldiniz.")
 
-    y = get_int("2. Sayı Giriniz : ")
-    islem = get_string("Yapabilceğiniz işlemler bunlardır\nToplama = '+'\nÇıkarma = '-'\nÇarpma = '*'\nBölme = '/'\nYapmak istediğiniz işlemi seçiniz: ")
-    üst_cizgi = 50*'-'
-    alt_cizgi = 50*'_'
-    
-    if islem == '+':
-        print(f"{üst_cizgi}\nİşlem Sonucunuz = {toplama(x,y)}\n{alt_cizgi}")
-        sayac = get_int("işleme devam etmek istiyorsanız.\nDevam et = 1\nKapat = 2\n\nİşlemi Seçiniz : ")
-    elif islem == '-':
-        print(f"{üst_cizgi}\nİşlem Sonucunuz = {cikarma(x,y)}\n{alt_cizgi}")
-        sayac = get_int("işleme devam etmek istiyorsanız.\nDevam et = 1\nKapat = 2\n\nİşlemi Seçiniz :")
-    elif islem == '/':
-     print(f"{üst_cizgi}\nİşlem Sonucunuz = {bölme(x,y)}\n{alt_cizgi}")
-     sayac = get_int("işleme devam etmek istiyorsanız.\nDevam et = 1\nKapat = 2\n\nİşlemi Seçiniz : ")
-    elif islem =='*':
-        print(f"{üst_cizgi}\nİşlem Sonucunuz = {carpma(x,y)}\n{alt_cizgi}")
-        sayac = get_int("işleme devam etmek istiyorsanız.\nDevam et = 1\nKapat = 2\n\nİşlemi Seçiniz : ")
+        x = get_int("Birinci sayıyı giriniz: ")
+        y = get_int("İkinci sayıyı giriniz: ")
+        
+        while True:
+            islem = get_string("Yapabileceğiniz işlemler bunlardır\nToplama = '+'\nÇıkarma = '-'\nÇarpma = '*'\nBölme = '/'\nYapmak istediğiniz işlemi seçiniz: ")
+
+            üst_cizgi = 50 * '-'
+            alt_cizgi = 50 * '_'
+
+            if islem == '+':
+                print(f"{üst_cizgi}\nİşlem Sonucunuz = {toplama(x, y)}\n{alt_cizgi}")
+                break
+            elif islem == '-':
+                print(f"{üst_cizgi}\nİşlem Sonucunuz = {cikarma(x, y)}\n{alt_cizgi}")
+                break
+            elif islem == '/':
+                print(f"{üst_cizgi}\nİşlem Sonucunuz = {bolme(x, y)}\n{alt_cizgi}")
+                break
+            elif islem == '*':
+                print(f"{üst_cizgi}\nİşlem Sonucunuz = {carpma(x, y)}\n{alt_cizgi}")
+                break
+            else:
+                print("Geçersiz işlem. Lütfen geçerli bir işlem seçiniz.")
+    elif karar == 2:
+        print("Hesap Makinesi kapatılıyor...")
+        break
     else:
-        sayac = get_int("Yapmak İstediğiniz İşlemi Anlayamadım.\nUygulamayı Tekrar Başlatın.\nBaşlat = 1\nKapat = 2\nİşlemi Seçiniz :")
-    
+        print("Geçersiz seçim. Lütfen 1 veya 2 giriniz.")
